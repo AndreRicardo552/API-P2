@@ -1,0 +1,343 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-11-05T00:00:00.000Z",
+  "__export_source": "orcahub",
+  "resources": [
+    {
+      "_id": "wrk_orcahub",
+      "_type": "workspace",
+      "parentId": null,
+      "name": "OrçaHub API",
+      "scope": "collection"
+    },
+    {
+      "_id": "fld_0",
+      "_type": "request_group",
+      "parentId": "wrk_orcahub",
+      "name": "CEP",
+      "metaSortKey": 1
+    },
+    {
+      "_id": "req_0_0",
+      "_type": "request",
+      "parentId": "fld_0",
+      "name": "Consultar CEP",
+      "method": "GET",
+      "url": "http://localhost:3000/api/cep/01001000",
+      "body": {},
+      "headers": [],
+      "metaSortKey": 2
+    },
+    {
+      "_id": "req_0_1",
+      "_type": "request",
+      "parentId": "fld_0",
+      "name": "CEP inexistente (404)",
+      "method": "GET",
+      "url": "http://localhost:3000/api/cep/99999999",
+      "body": {},
+      "headers": [],
+      "metaSortKey": 3
+    },
+    {
+      "_id": "req_0_2",
+      "_type": "request",
+      "parentId": "fld_0",
+      "name": "CEP inválido (400)",
+      "method": "GET",
+      "url": "http://localhost:3000/api/cep/123",
+      "body": {},
+      "headers": [],
+      "metaSortKey": 4
+    },
+    {
+      "_id": "fld_1",
+      "_type": "request_group",
+      "parentId": "wrk_orcahub",
+      "name": "Clientes",
+      "metaSortKey": 5
+    },
+    {
+      "_id": "req_1_0",
+      "_type": "request",
+      "parentId": "fld_1",
+      "name": "Cadastrar cliente",
+      "method": "POST",
+      "url": "http://localhost:3000/api/clientes",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"João Pereira\",\n  \"telefone\": \"(11) 98888-7777\",\n  \"segmento\": \"COMERCIAL\",\n  \"cep\": \"01310-100\",\n  \"numero\": \"1000\",\n  \"complemento\": \"Sala 12\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaSortKey": 6
+    },
+    {
+      "_id": "req_1_1",
+      "_type": "request",
+      "parentId": "fld_1",
+      "name": "Listar clientes",
+      "method": "GET",
+      "url": "http://localhost:3000/api/clientes",
+      "body": {},
+      "headers": [],
+      "metaSortKey": 7
+    },
+    {
+      "_id": "req_1_2",
+      "_type": "request",
+      "parentId": "fld_1",
+      "name": "Buscar cliente",
+      "method": "GET",
+      "url": "http://localhost:3000/api/clientes/1",
+      "body": {},
+      "headers": [],
+      "metaSortKey": 8
+    },
+    {
+      "_id": "req_1_3",
+      "_type": "request",
+      "parentId": "fld_1",
+      "name": "Atualizar cliente",
+      "method": "PUT",
+      "url": "http://localhost:3000/api/clientes/1",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"telefone\": \"(11) 97777-6666\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaSortKey": 9
+    },
+    {
+      "_id": "req_1_4",
+      "_type": "request",
+      "parentId": "fld_1",
+      "name": "Atualizar CEP do cliente",
+      "method": "PUT",
+      "url": "http://localhost:3000/api/clientes/1",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"cep\": \"20040-020\",\n  \"numero\": \"50\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaSortKey": 10
+    },
+    {
+      "_id": "req_1_5",
+      "_type": "request",
+      "parentId": "fld_1",
+      "name": "Cliente não encontrado (404)",
+      "method": "GET",
+      "url": "http://localhost:3000/api/clientes/9999",
+      "body": {},
+      "headers": [],
+      "metaSortKey": 11
+    },
+    {
+      "_id": "req_1_6",
+      "_type": "request",
+      "parentId": "fld_1",
+      "name": "Cadastrar cliente com dados inválidos (400)",
+      "method": "POST",
+      "url": "http://localhost:3000/api/clientes",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"\",\n  \"segmento\": \"OUTRO\",\n  \"cep\": \"123\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaSortKey": 12
+    },
+    {
+      "_id": "fld_2",
+      "_type": "request_group",
+      "parentId": "wrk_orcahub",
+      "name": "Orçamentos",
+      "metaSortKey": 13
+    },
+    {
+      "_id": "req_2_0",
+      "_type": "request",
+      "parentId": "fld_2",
+      "name": "Criar orçamento cadastrando cliente",
+      "method": "POST",
+      "url": "http://localhost:3000/api/orcamentos",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"tipoServico\": \"Pintura residencial\",\n  \"descricao\": \"Pintura interna de 3 cômodos\",\n  \"valorCotado\": 2500,\n  \"cliente\": {\n    \"nome\": \"Maria Souza\",\n    \"telefone\": \"(11) 91234-5678\",\n    \"segmento\": \"RESIDENCIAL\",\n    \"cep\": \"01001-000\",\n    \"numero\": \"100\"\n  }\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaSortKey": 14
+    },
+    {
+      "_id": "req_2_1",
+      "_type": "request",
+      "parentId": "fld_2",
+      "name": "Criar orçamento para cliente existente",
+      "method": "POST",
+      "url": "http://localhost:3000/api/orcamentos",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"clienteId\": 1,\n  \"tipoServico\": \"Manutenção elétrica\",\n  \"valorCotado\": 800\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaSortKey": 15
+    },
+    {
+      "_id": "req_2_2",
+      "_type": "request",
+      "parentId": "fld_2",
+      "name": "Listar orçamentos",
+      "method": "GET",
+      "url": "http://localhost:3000/api/orcamentos",
+      "body": {},
+      "headers": [],
+      "metaSortKey": 16
+    },
+    {
+      "_id": "req_2_3",
+      "_type": "request",
+      "parentId": "fld_2",
+      "name": "Buscar orçamento",
+      "method": "GET",
+      "url": "http://localhost:3000/api/orcamentos/1",
+      "body": {},
+      "headers": [],
+      "metaSortKey": 17
+    },
+    {
+      "_id": "req_2_4",
+      "_type": "request",
+      "parentId": "fld_2",
+      "name": "Aprovar orçamento",
+      "method": "PUT",
+      "url": "http://localhost:3000/api/orcamentos/1",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"status\": \"APROVADO\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaSortKey": 18
+    },
+    {
+      "_id": "req_2_5",
+      "_type": "request",
+      "parentId": "fld_2",
+      "name": "Orçamento sem cliente (400)",
+      "method": "POST",
+      "url": "http://localhost:3000/api/orcamentos",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"tipoServico\": \"Jardinagem\",\n  \"valorCotado\": 300\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaSortKey": 19
+    },
+    {
+      "_id": "req_2_6",
+      "_type": "request",
+      "parentId": "fld_2",
+      "name": "Orçamento com cliente inexistente (404)",
+      "method": "POST",
+      "url": "http://localhost:3000/api/orcamentos",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"clienteId\": 9999,\n  \"tipoServico\": \"Jardinagem\",\n  \"valorCotado\": 300\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaSortKey": 20
+    },
+    {
+      "_id": "req_2_7",
+      "_type": "request",
+      "parentId": "fld_2",
+      "name": "Orçamento com CEP inexistente (404)",
+      "method": "POST",
+      "url": "http://localhost:3000/api/orcamentos",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"tipoServico\": \"Jardinagem\",\n  \"valorCotado\": 300,\n  \"cliente\": {\n    \"nome\": \"Ana Lima\",\n    \"telefone\": \"(11) 90000-0000\",\n    \"segmento\": \"RURAL\",\n    \"cep\": \"99999-999\"\n  }\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaSortKey": 21
+    },
+    {
+      "_id": "fld_3",
+      "_type": "request_group",
+      "parentId": "wrk_orcahub",
+      "name": "Remoções (rodar por último)",
+      "metaSortKey": 22
+    },
+    {
+      "_id": "req_3_0",
+      "_type": "request",
+      "parentId": "fld_3",
+      "name": "Remover orçamento",
+      "method": "DELETE",
+      "url": "http://localhost:3000/api/orcamentos/2",
+      "body": {},
+      "headers": [],
+      "metaSortKey": 23
+    },
+    {
+      "_id": "req_3_1",
+      "_type": "request",
+      "parentId": "fld_3",
+      "name": "Remover cliente e seus orçamentos",
+      "method": "DELETE",
+      "url": "http://localhost:3000/api/clientes/2",
+      "body": {},
+      "headers": [],
+      "metaSortKey": 24
+    }
+  ]
+}
